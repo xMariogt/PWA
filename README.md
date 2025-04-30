@@ -95,7 +95,26 @@
           },
 ```
 
-### 4. Crear los environment
+### 4. Se agrega el manifest en src/index.html
+```html
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Emprendimiento</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="manifest" href="manifest.webmanifest"> <!-- Aqui se agrega el manifest para que funcione-->
+</head>
+<body>
+  <app-root></app-root>
+</body>
+</html>
+
+```
+
+### 5. Crear los environment
 
     en el directorio /src/environments/ crear:
 
@@ -115,7 +134,7 @@ export const environment = {
 }
 ```
 
-### 5. Se agrega lo siguiente a app.config.ts
+### 6. Se agrega lo siguiente a app.config.ts
 
 ```typescript
     import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
@@ -136,7 +155,7 @@ export const appConfig: ApplicationConfig = {
 
 ```
 
-### 6. Compila el proyecto en produccion y se sirve con HTTPS
+### 7. Compila el proyecto en produccion y se sirve con HTTPS
 
     ng build --configuration production
     npx http-server -p 8080 -c-1 dist/emprendimiento/browser/
