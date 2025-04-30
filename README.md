@@ -1,7 +1,7 @@
 # Guia de instalacion para PWA
 
 ### 1. Crear un proyecto de Angular
-    ng new mi-app
+    ng new emprendimiento
 
 ### 2. Ya creado el proyecto, agregamos lo siguiente:
 
