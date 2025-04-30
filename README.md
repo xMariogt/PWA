@@ -1,27 +1,142 @@
-# Emprendimiento
+# Guia de instalacion para PWA
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.0.7.
+### 1. Crear un proyecto de Angular
+    ng new mi-app
 
-## Development server
+### 2. Ya creado el proyecto, agregamos lo siguiente:
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+    ng add @angular/pwa
+    ng add @angular/service-worker
 
-## Code scaffolding
+### 3. Creamos los siguientes archivos y su configuracion basica
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+    ngsw-config.json
+```json
+{
+    "index": "/index.html",
+    "assetGroups": [
+        {
+            "name": "emprendimiento",
+            "installMode": "prefetch",
+            "resources": {
+                "files": [
+                    "/favicon.ico",
+                    "/index.html",
+                    "/*.css",
+                    "/*.js"
+                ]
+            }
+        },
+        {
+            "name": "assets",
+            "installMode": "lazy",
+            "updateMode": "prefetch",
+            "resources": {
+                "files": [
+                    "/assets/**",
+                    "/*.(png|jpg|jpeg|svg)"
+                ]
+            }
+        }
+    ]
+}
 
-## Build
+```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+    /src/manifest.webmanifest
+```json
+{
+    "name": "Mi Angular PWA",
+    "short_name": "AngularPWA",
+    "start_url": "/",
+    "display": "standalone",
+    "theme_color": "#1976d2",
+    "background_color": "#ffffff",
+    "icons": [
+        {
+            "src": "assets/images/logo.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "assets/images/logo.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}
+```
 
-## Running unit tests
+    dentro de angular.json buscar lo siguiente:
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+```json
+ "configurations": {
+            "production": {
+              "serviceWorker": "ngsw-config.json", // Linea que se debe agregar para que funcione
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kB",
+                  "maximumError": "1MB"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kB",
+                  "maximumError": "4kB"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true
+            }
+          },
+```
 
-## Running end-to-end tests
+### 4. Crear los environment
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+    en el directorio /src/environments/ crear:
 
-## Further help
+* environment.ts
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+```typescript
+export const environment = {
+    ServiceWorker: false
+}
+```
+
+* environment.prod.ts
+
+```typescript
+export const environment = {
+    ServiceWorker: true
+}
+```
+
+### 5. Se agrega lo siguiente a app.config.ts
+
+```typescript
+    import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
+import { provideRouter, withComponentInputBinding } from '@angular/router';
+import { routes } from './app.routes';
+// Imports necesarios
+import { provideServiceWorker } from '@angular/service-worker'; 
+import { environment } from '../environments/environment';
+
+export const appConfig: ApplicationConfig = {
+  providers: [
+    // Bloque de codigo que se debe agregar
+    ...(environment.ServiceWorker ? [provideServiceWorker('ngsw-worker.js')] : []),
+    // ---------------------------------------
+    provideZoneChangeDetection({ eventCoalescing: true }), 
+    provideRouter(routes, withComponentInputBinding())]
+};
+
+```
+
+### 6. Compila el proyecto en produccion y se sirve con HTTPS
+
+    ng build --configuration production
+    npx http-server -p 8080 -c-1 dist/emprendimiento/browser/

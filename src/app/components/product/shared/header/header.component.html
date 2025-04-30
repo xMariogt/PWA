@@ -1,0 +1,59 @@
+<nav class="">
+    <div class="w-full flex flex-wrap md:flex-nowrap items-center justify-between mx-auto py-4">
+        <div class="flex items-center object-contain space-x-8">
+            <img src="assets/images/foodbyte.jpg" class="mr-1 sm:mr-3 h-20 md:h-40 w-auto max-w-[150px]"
+                alt="FoodByte Logo" />
+        </div>
+        <div class="flex items-center pt-4 md:pt-20">
+            <button class="p-2 border-black border rounded relative" (click)="toggleSideMenu()">
+                <div
+                    class="absolute -top-2 -left-2 rounded h-5 w-5 bg-black text-white text-xs flex items-center justify-center">
+                    {{ cart().length }}
+                </div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24"
+                    stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
+                </svg>
+            </button>
+        </div>
+    </div>
+</nav>
+<div class="content-between fixed border-l-4 top-0 right-0 bg-red z-40 w-72 h-screen p-4 overflow-y-scroll transition-transform bg-white"
+    [class.translate-x-full]="hiddenSiteMenu()">
+    <div class="flex justify-between items-center">
+        <p class="text-xl">Carrito</p>
+        <button (click)="toggleSideMenu()">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        </button>
+    </div>
+    <div class="w-full">
+        @for(product of cart(); track product){
+        <div class="my-2 ">
+            <div class="flex space-x-2 space-y-2 items-center ">
+                <img [src]="product.image" [alt]="product.title"
+                    class="w-full h-full aspect-video object-cover object-center">
+            </div>
+            <div class="grid grid-cols-3 justify-between items-center">
+                <h3>{{ product.title }}</h3>
+                <p>{{ product.price | currency:'Q':'symbol':'1.2-2' }}</p>
+                <button (click)="removeFromCart($index)"
+                    class="text-white bg-orange-500 rounded-lg px-4 my-2 py-2 w-fit"><svg
+                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="w-5 h-5">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M6 4M18 4M4 6L20 6M6 6V19C6 20.1046 6.89543 21 8 21H16C17.1046 21 18 20.1046 18 19V6H6Z" />
+                    </svg></button>
+            </div>
+        </div>
+        }
+        <div class="grid grid-cols-2 justify-between py-4 bottom-0 bg-white">
+            <p class="py-4">Total: {{ total() | currency:'Q':'symbol':'1.2'}}</p>
+            <button (click)="send()" class="text-white bg-green-600 rounded-lg px-2 py-4">Pedir</button>
+        </div>
+    </div>
+
+</div>
