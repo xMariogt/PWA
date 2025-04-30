@@ -1,0 +1,91 @@
+{
+  "configVersion": 1,
+  "timestamp": 1746032220565,
+  "index": "/index.html",
+  "assetGroups": [
+    {
+      "name": "emprendimiento",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "/favicon.ico",
+        "/index.html",
+        "/main-ZPWA5BR2.js",
+        "/polyfills-SCHOHYNV.js",
+        "/styles-CUIUAAL2.css"
+      ],
+      "patterns": []
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "/assets/images/background.jpg",
+        "/assets/images/background.pdf",
+        "/assets/images/bowl.jpeg",
+        "/assets/images/foodbyte.jpg",
+        "/assets/images/frijol",
+        "/assets/images/frijol.jpg",
+        "/assets/images/huevo-aguacate.jpeg",
+        "/assets/images/logo.png",
+        "/assets/images/panes.jpeg",
+        "/assets/images/pasta.jpeg",
+        "/assets/images/pollo.jpg",
+        "/assets/images/quesadilla.jpeg",
+        "/assets/images/salad.jpeg",
+        "/assets/images/smoothies.jpeg",
+        "/assets/images/tostada.jpeg"
+      ],
+      "patterns": []
+    }
+  ],
+  "dataGroups": [],
+  "hashTable": {
+    "/assets/images/background.jpg": "18b4ba6d5c791718ae424322fe91b29aa0aabf20",
+    "/assets/images/background.pdf": "7848237b43747985d20c1e87e3ca478fcf38af80",
+    "/assets/images/bowl.jpeg": "696935355a05acb98c21dfac8f6f1087033a604c",
+    "/assets/images/foodbyte.jpg": "51924d0e73e5ea639b77f4097e02d92a2b6800b7",
+    "/assets/images/frijol": "ca28cdcb2e8b8aa96df09ba646dcdff53003289d",
+    "/assets/images/frijol.jpg": "ee8c819e532995124615633381ce3b7d976142dc",
+    "/assets/images/huevo-aguacate.jpeg": "9ed233ee109d854efde88fd8b9057c65f94de55d",
+    "/assets/images/logo.png": "3e913298e375924bf970234eb9f02ac0abf6ad41",
+    "/assets/images/panes.jpeg": "7ca18c3af283421eeff3877ab30cf13e6dff6825",
+    "/assets/images/pasta.jpeg": "f0de51a1be397fa51c10d3f6113947e19a351e67",
+    "/assets/images/pollo.jpg": "e02e5ea654baae7528a97907fbe51e6540d5d7f0",
+    "/assets/images/quesadilla.jpeg": "78da6e2f3d78b0a817449231891dbc87864e8fca",
+    "/assets/images/salad.jpeg": "639628c60d45036ff846ebc763cafc2b81fadc7c",
+    "/assets/images/smoothies.jpeg": "b183ec1430b862996a3df48fb7e7a37f59af1d16",
+    "/assets/images/tostada.jpeg": "8802f43a76945c2f215d4c5bb81bdb9abb70c7cf",
+    "/favicon.ico": "9c39f434fe1261f68c5e3eefdf734630d99c5670",
+    "/index.html": "0caa9dbab880067de0550eff4067ff4fa8c230b8",
+    "/main-ZPWA5BR2.js": "9f9fa044c9b41351ebc195cae5bb9bbcb096cadf",
+    "/polyfills-SCHOHYNV.js": "d45c76c5960bab3ace7fd6d211b9579456241f8a",
+    "/styles-CUIUAAL2.css": "dd3464b83258189166c905730d32273a20868f15"
+  },
+  "navigationUrls": [
+    {
+      "positive": true,
+      "regex": "^\\/.*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*\\.[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*\\/.*$"
+    }
+  ],
+  "navigationRequestStrategy": "performance"
+}

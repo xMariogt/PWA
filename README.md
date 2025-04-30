@@ -7,6 +7,9 @@
 
     ng add @angular/pwa
     ng add @angular/service-worker
+    Si ese no funciona usar
+    npm install @angular/service-worker@<version de angular> --legacy-peer-deps
+
 
 ### 3. Creamos los siguientes archivos y su configuracion basica
 
